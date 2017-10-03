@@ -17,11 +17,21 @@ class Main extends React.Component {
 
     renderReminders(){
         const {reminders} = this.props;
-        console.log('reminders',reminders);
+        return (
+            <ul className="list-group col-sm-4 col-sm-offset-4">
+                {reminders.map(reminder=> {
+                    return(
+                        <li key={reminder.id} className='list-group-item'>
+                            <div>{reminder.text}</div>
+                        </li>
+                    );
+                })}
+            </ul>
+        );
     }
 
     render(){
-        console.log('this.props',this.props);
+
         return(
             <div>
                 <div className="title">
@@ -36,7 +46,7 @@ class Main extends React.Component {
                             onChange={event=>this.setState({text:event.target.value})}
                         />
                     </div>
-                    {this.renderReminders()}
+
                     <button 
                         type='button' 
                         className='btn btn-success'
@@ -45,6 +55,7 @@ class Main extends React.Component {
                         Add Reminder
                     </button>
                 </div>
+                {this.renderReminders()}
             </div>
         );
     }
